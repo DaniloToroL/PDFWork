@@ -13,6 +13,7 @@ def Main():
 
 def Split():
     return [
+        [sg.Image('img/split.jpg', size=(500,200 ))],
         [sg.Text('Select PDF')],
         [sg.Input(key="path"), sg.FileBrowse(file_types=(("Pdf", "*.pdf"),))],
         [sg.Text('Settings')],
@@ -25,6 +26,7 @@ def Split():
 
 def Merge():
     return [
+        [sg.Image('img/merge.jpg', size=(500,200 ))],
         [sg.Text('Select PDFs')],
         [sg .Input(key="input"), sg.FilesBrowse()],
         [sg.Text('Save')],
@@ -34,6 +36,7 @@ def Merge():
 
 def Word2PDF():
     return [
+        [sg.Image('img/word-to-pdf.png', size=(500,200 ))],
         [sg.Text('Select Folder')],
         [sg.Input(key="from"), sg.FilesBrowse(file_types=(("Word", "*.docx"),))],
         [sg.Text('Save')],
@@ -49,6 +52,7 @@ def PDF2Image():
 
 def Image2PDF():
     return [
+        [sg.Image('img/image-to-pdf.jpg', size=(500,200))],
         [sg.Text('Select images')],
         [sg .Input(key="input"), sg.FilesBrowse(file_types=(("JPEG", "*.jpg"),))],
         [sg.Text('Save')],
