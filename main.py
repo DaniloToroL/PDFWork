@@ -1,6 +1,7 @@
-import PySimpleGUI as sg 
+import PySimpleGUI as sg
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import os
+import gui
 from subprocess import Popen, PIPE
 docto = os.path.join("bin", "docto.exe")
 
@@ -66,18 +67,13 @@ def splitPDF(data):
 
 
 if __name__ == '__main__':
-
-    layout = [
-        [sg.Text("Welcome to PDFWork")],
-        [sg.Text("What do you want to do?")],
-        [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
-    ]
-    window = sg.Window('PDF Work', layout)
-
+    window = gui.main()
     while True:
         event, values = window.read()
         print(event, values)
 
+        # if event is OK, on the navigation we are at the second level
+        # if it is not OK, we are on the second level
         if event is not "Ok":
             option = event
         if event is None or event == 'Exit':
