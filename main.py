@@ -63,78 +63,79 @@ def splitPDF(data):
         with open(data["folder"] + os.sep + output_filename, 'wb') as out:
             pdf_writer.write(out)
             print('Created: {}'.format(output_filename))
-   
 
-layout = [
-    [sg.Text("Welcome to PDFWork")],
-    [sg.Text("What do you want to do?")],
-    [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
-] 
-window = sg.Window('PDF Work', layout)
 
-while True:
-    event, values = window.read()
-    print(event, values)
+if __name__ == '__main__':
 
-    if event is not "Ok":
-        option = event
-    if event is None or event == 'Exit':
-        break
-    if event == "Split":
-        layout = [
-            [sg.Text('Select PDF')],
-            [sg .Input(key="path"), sg.FileBrowse()],
-            [sg.Text('Settings')],
-            [sg.Checkbox('Step', key='check_step'), sg.Input(key='in_step')],
-            [sg.Checkbox('Parts', key='part_step'), sg.Input(key='in_parts')],
-            [sg.Text('Save')],
-            [sg .Input(key="folder"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-            [sg.Ok()]
-        ]
-    elif event == "Merge":
-        layout = [
-            [sg.Text('Select Folder')],
-            [sg .Input(key="input"), sg.FilesBrowse()],
-            [sg.Text('Save')],
-            [sg .Input(key="output"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-            [sg.Ok()]
-        ]  
-    elif event == "Word2PDF":
-        layout = [
-            [sg.Text('Select Folder')],
-            [sg .Input(key="from"), sg.FilesBrowse(file_types=(("Word", "*.docx"),))],
-            [sg.Text('Save')],
-            [sg .Input(key="to"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-            [sg.Ok()]
-        ]   
-    elif event == "Ok":
-        if option == "Split":
-            splitPDF(values)
-            layout = [
-                [sg.Text("Success")],
-                [sg.Text("What do you want to do?")],
-                [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
-            ]
-
-        elif option == "Merge":
-            mergePDF(values)
-            layout = [
-                [sg.Text("Success")],
-                [sg.Text("What do you want to do?")],
-                [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
-            ]
-            
-        elif option == "Word2PDF":
-            wordToPdf(values)
-            layout = [
-                [sg.Text("Success")],
-                [sg.Text("What do you want to do?")],
-                [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
-            ]
-        
-    window.Close()
+    layout = [
+        [sg.Text("Welcome to PDFWork")],
+        [sg.Text("What do you want to do?")],
+        [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
+    ]
     window = sg.Window('PDF Work', layout)
 
-window.Close()
-            
-       
+    while True:
+        event, values = window.read()
+        print(event, values)
+
+        if event is not "Ok":
+            option = event
+        if event is None or event == 'Exit':
+            break
+        if event == "Split":
+            layout = [
+                [sg.Text('Select PDF')],
+                [sg .Input(key="path"), sg.FileBrowse()],
+                [sg.Text('Settings')],
+                [sg.Checkbox('Step', key='check_step'), sg.Input(key='in_step')],
+                [sg.Checkbox('Parts', key='part_step'), sg.Input(key='in_parts')],
+                [sg.Text('Save')],
+                [sg .Input(key="folder"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
+                [sg.Ok()]
+            ]
+        elif event == "Merge":
+            layout = [
+                [sg.Text('Select Folder')],
+                [sg .Input(key="input"), sg.FilesBrowse()],
+                [sg.Text('Save')],
+                [sg .Input(key="output"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
+                [sg.Ok()]
+            ]
+        elif event == "Word2PDF":
+            layout = [
+                [sg.Text('Select Folder')],
+                [sg .Input(key="from"), sg.FilesBrowse(file_types=(("Word", "*.docx"),))],
+                [sg.Text('Save')],
+                [sg .Input(key="to"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
+                [sg.Ok()]
+            ]
+        elif event == "Ok":
+            if option == "Split":
+                splitPDF(values)
+                layout = [
+                    [sg.Text("Success")],
+                    [sg.Text("What do you want to do?")],
+                    [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
+                ]
+
+            elif option == "Merge":
+                mergePDF(values)
+                layout = [
+                    [sg.Text("Success")],
+                    [sg.Text("What do you want to do?")],
+                    [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
+                ]
+
+            elif option == "Word2PDF":
+                wordToPdf(values)
+                layout = [
+                    [sg.Text("Success")],
+                    [sg.Text("What do you want to do?")],
+                    [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
+                ]
+
+        window.Close()
+        window = sg.Window('PDF Work', layout)
+
+    window.Close()
+
