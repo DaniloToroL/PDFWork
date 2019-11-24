@@ -67,7 +67,7 @@ def splitPDF(data):
 
 
 if __name__ == '__main__':
-    window = gui.main()
+    window = gui.Main()
     while True:
         event, values = window.read()
         print(event, values)
@@ -79,32 +79,13 @@ if __name__ == '__main__':
         if event is None or event == 'Exit':
             break
         if event == "Split":
-            layout = [
-                [sg.Text('Select PDF')],
-                [sg .Input(key="path"), sg.FileBrowse()],
-                [sg.Text('Settings')],
-                [sg.Checkbox('Step', key='check_step'), sg.Input(key='in_step')],
-                [sg.Checkbox('Parts', key='part_step'), sg.Input(key='in_parts')],
-                [sg.Text('Save')],
-                [sg .Input(key="folder"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-                [sg.Ok()]
-            ]
+            layout = gui.Split()
         elif event == "Merge":
-            layout = [
-                [sg.Text('Select Folder')],
-                [sg .Input(key="input"), sg.FilesBrowse()],
-                [sg.Text('Save')],
-                [sg .Input(key="output"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-                [sg.Ok()]
-            ]
+            layout = gui.Merge()
         elif event == "Word2PDF":
-            layout = [
-                [sg.Text('Select Folder')],
-                [sg .Input(key="from"), sg.FilesBrowse(file_types=(("Word", "*.docx"),))],
-                [sg.Text('Save')],
-                [sg .Input(key="to"), sg.FileSaveAs(file_types=(("Pdf", "*.pdf"),))],
-                [sg.Ok()]
-            ]
+            layout = gui.Word2PDF()
+        elif event == 'PDF2Image':
+            layout = gui.PDF2Image()
         elif event == "Ok":
             if option == "Split":
                 splitPDF(values)
@@ -129,6 +110,8 @@ if __name__ == '__main__':
                     [sg.Text("What do you want to do?")],
                     [sg.Button('Merge'),sg.Button('Split'), sg.Button('Word2PDF'), sg.Button('PDF2Image')]
                 ]
+        else:
+            print("Error")
 
         window.Close()
         window = sg.Window('PDF Work', layout)
