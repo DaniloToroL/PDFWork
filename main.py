@@ -78,14 +78,8 @@ if __name__ == '__main__':
             option = event
         if event is None or event == 'Exit':
             break
-        if event == "Split":
-            layout = gui.Split()
-        elif event == "Merge":
-            layout = gui.Merge()
-        elif event == "Word2PDF":
-            layout = gui.Word2PDF()
-        elif event == 'PDF2Image':
-            layout = gui.PDF2Image()
+        if event == "Split" or event == 'Merge' or event == 'Word2PDF' or event == 'PDF2Image':
+            layout = gui.LayoutHandler()[event]
         elif event == "Ok":
             if option == "Split":
                 splitPDF(values)

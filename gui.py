@@ -48,5 +48,16 @@ def PDF2Image():
         [sg.Ok()]
     ]
 
+def LayoutHandler():
+    return {
+        'Split': Split(),
+        'Merge': Merge(),
+        'Word2PDF': Word2PDF(),
+        'PDF2Image': PDF2Image()
+    }
+
+
+if __name__ == '__main__':
+    pass
 
 
