@@ -4,10 +4,10 @@ PDF Work is a project that works with PDFs performing different useful actions s
 ## Working
 - Merge PDF
 - Split PDF
-
-## ToDo
 - Word to PDF
 - Image to PDF
+
+## ToDo
 - PDF to Image
 - Improve interface
 - Web
